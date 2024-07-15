@@ -1,0 +1,26 @@
+def quickSort(arr):
+    n = len(arr)
+    p = arr[0]
+
+    left = []
+    equal = []
+    right = []
+
+    for num in arr:
+        if num < p:
+            left.append(num)
+        elif num == p:
+            equal.append(num)
+        else:
+            right.append(num)
+    
+    
+    result = left + equal + right
+    return result
+
+if __name__ == '__main__':
+    n = int(input().strip())
+    arr = list(map(int, input().rstrip().split()))
+
+    result = quickSort(arr)
+    print(" ".join(map(str, result)))
