@@ -1,0 +1,51 @@
+def maximumPeople(townPopulation, townLocations, cloudLocations, cloudRanges):
+    n = len(townPopulation)
+    m = len(cloudLocations)
+    
+    total_population = sum(townPopulation)
+    current_darkness = 0
+    
+   
+    for i in range(m):
+        cloud_pos = cloudLocations[i]
+        cloud_range = cloudRanges[i]
+        
+        left_bound = cloud_pos - cloud_range
+        right_bound = cloud_pos + cloud_range
+        
+        for j in range(n):
+            if left_bound <= townLocations[j] <= right_bound:
+                current_darkness += townPopulation[j]
+    
+    min_darkness = current_darkness
+    
+   
+    for i in range(m):
+        cloud_pos = cloudLocations[i]
+        cloud_range = cloudRanges[i]
+        
+        left_bound = cloud_pos - cloud_range
+        right_bound = cloud_pos + cloud_range
+        
+        removed_cloud_darkness = current_darkness
+        
+        for j in range(n):
+            if left_bound <= townLocations[j] <= right_bound:
+                removed_cloud_darkness -= townPopulation[j]
+        
+        min_darkness = min(min_darkness, removed_cloud_darkness)
+    
+    max_sunny_population = total_population - min_darkness
+    return max_sunny_population
+
+
+if __name__ == "__main__":
+    n = int(input().strip())  
+    townPopulation = list(map(int, input().strip().split()))
+    townLocations = list(map(int, input().strip().split()))
+    m = int(input().strip())  
+    cloudLocations = list(map(int, input().strip().split()))
+    cloudRanges = list(map(int, input().strip().split()))
+    
+    result = maximumPeople(townPopulation, townLocations, cloudLocations, cloudRanges)
+    print(result)
