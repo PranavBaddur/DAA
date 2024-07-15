@@ -1,0 +1,15 @@
+def stringConstruction(s):
+    unique_chars = set(s)
+    return len(unique_chars)
+
+
+if __name__ == "__main__":
+    n = int(input().strip())  
+    results = []
+    for _ in range(n):
+        s = input().strip()
+        result = stringConstruction(s)
+        results.append(result)
+    
+    for result in results:
+        print(result)
